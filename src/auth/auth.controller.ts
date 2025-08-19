@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Patch,
   Post,
   Put,
@@ -78,11 +79,17 @@ export class AuthController {
 
   @UseGuards(AccessTokenGuard)
   @Patch('update-mobile')
-  async protectedTest(
+  async updateMobile(
     @Req() req: any,
     @Body() updateMobileDto: UpdateMobileDto,
   ) {
     const userId = req.user.sub;
     return this.authService.updateMobile(userId, updateMobileDto);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Get('test')
+  public test() {
+    return { hello: 1 };
   }
 }

@@ -11,10 +11,14 @@ import { Module } from '@nestjs/common';
 import { PaginationModule } from './common/pagination/pagination.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-/**
- * Importing Entities
- * */
-// import { User } from './users/user.entity';
+
+import { ReferenceModule } from './reference/reference.module';
+import { ApplicantProfileModule } from './applicant-profile/applicant-profile.module';
+import { ContactsModule } from './contacts/contacts.module';
+import { FamilyDetailsModule } from './family-details/family-details.module';
+import { BankDetailsModule } from './bank-details/bank-details.module';
+import { QuotaDetailsModule } from './quota-details/quota-details.module';
+import { OtherDetailsModule } from './other-details/other-details.module';
 
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
@@ -53,6 +57,13 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
     PaginationModule,
+    ReferenceModule,
+    ApplicantProfileModule,
+    ContactsModule,
+    FamilyDetailsModule,
+    BankDetailsModule,
+    QuotaDetailsModule,
+    OtherDetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
