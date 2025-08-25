@@ -296,4 +296,33 @@ export class AuthService {
 
     return { message: 'Mobile number updated successfully' };
   }
+
+  public async refreshAccessToken(refreshToken: string) {
+    try {
+      const jwtConfig = this.configService.get('jwt');
+      // 1) Verify the refresh token
+      const payload = await this.jwtService.verifyAsync(refreshToken, {
+        secret: jwtConfig.refreshSecret,
+      });
+
+      // 2) Make sure the user still exists / is active
+      const user = await this.userRepository.findOne({
+        where: { id: payload.sub },
+      });
+      if (!user) {
+        throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      }
+
+      // 3) Issue a fresh access token (you can also rotate refresh here if desired)
+      const accessToken = this.generateAccessToken(user);
+
+      return { accessToken };
+    } catch (err) {
+      // invalid, expired, or malformed refresh token
+      throw new HttpException(
+        'Invalid or expired refresh token',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+  }
 }

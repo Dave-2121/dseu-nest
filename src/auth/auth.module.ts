@@ -1,4 +1,4 @@
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 
 import { AuthController } from './auth.controller';
@@ -13,6 +13,7 @@ import { Otp } from './entities/otp.entity';
 import { User } from './entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MailConfigService } from 'src/config/mail.config';
+import { AccessTokenGuard } from './guards/access-token/access-token.guard';
 
 @Module({
   controllers: [AuthController],
@@ -24,6 +25,7 @@ import { MailConfigService } from 'src/config/mail.config';
     },
     EmailProvider,
     MailConfigService,
+    AccessTokenGuard,
   ],
   imports: [
     TypeOrmModule.forFeature([User, Otp]),

@@ -19,6 +19,7 @@ import { FamilyDetailsModule } from './family-details/family-details.module';
 import { BankDetailsModule } from './bank-details/bank-details.module';
 import { QuotaDetailsModule } from './quota-details/quota-details.module';
 import { OtherDetailsModule } from './other-details/other-details.module';
+import { DocumentsModule } from './documents/documents.module';
 
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
@@ -64,6 +65,7 @@ const ENV = process.env.NODE_ENV;
     BankDetailsModule,
     QuotaDetailsModule,
     OtherDetailsModule,
+    DocumentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

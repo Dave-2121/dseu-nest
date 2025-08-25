@@ -1,0 +1,14 @@
+export enum DocumentType {
+  PHOTO = 'PHOTO',
+  SIGNATURE = 'SIGNATURE',
+  PMSSS_CERT = 'PMSSS_CERT',
+  KASHMIRI_CERT = 'KASHMIRI_CERT',
+  PWBD_CERT = 'PWBD_CERT',
+  DEFENCE_CERT = 'DEFENCE_CERT',
+}
+
+export enum DocumentStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}
